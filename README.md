@@ -14,9 +14,7 @@ This assignment reinforces:
 --------------------------------------------------
 
 ## Project Setup
-
-Create a folder called locations-api
-
+Inside a new folder.
 1. Create an index.js file
 2. Create a routes folder
 3. Inside routes, create:
