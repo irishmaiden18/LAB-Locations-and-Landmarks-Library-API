@@ -183,7 +183,7 @@ DONE-- GET /landmarks
 
 --------------------------------------------------
 
-POST /landmarks
+DONE-- POST /landmarks
 
 - Adds a new landmark
 - Required fields:

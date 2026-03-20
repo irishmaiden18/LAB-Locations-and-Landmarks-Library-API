@@ -60,7 +60,7 @@ router.get("/", (req, res) => {
 router.post("/", (req, res) => {
 
     try {
-        // make sure the three required fields are actually present in the incoming request (name, country and population)
+        // If the three required fields are actually present in the incoming request (name, country and population)
         if ((req.body.name) && (req.body.country) && (req.body.population)) {
 
             // determine whether location is already in our list
@@ -71,7 +71,7 @@ router.post("/", (req, res) => {
             // if the location is not in our list
             if (!foundLocale) {
 
-                // create a new object using the data from the request body with a generated uuid -- this lets us set the id without user imput
+                // create a new object using the data from the request body with a generated uuid -- this lets us set the id without user input
                 // make sure everything is lowercase for consistent searching & sorting
                 const newLocale = {
                     id: uuid(),
@@ -107,7 +107,7 @@ router.post("/", (req, res) => {
             // send a response to the user telling them we need more information before we can add the location
             res.status(500).json ({
                 message: "failure",
-                payload: "We don't have enough information to add your location to the list. Please make sure you include a location name, country and population"
+                payload: "We don't have enough information to add your location to the list. Please make sure you include a location name, country and population."
             })
 
         }
