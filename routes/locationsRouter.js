@@ -184,5 +184,55 @@ router.put("/:id", (req, res) => {
 
 })
 
+// handles DELETE requests
+router.delete("/:id", (req, res) => {
+
+    try {
+        // figure out whether the location is in our list
+        const foundLocation = locationData.find((location) => {
+            return location.id === req.params.id
+        })
+
+        // if the location is in our list
+        if (foundLocation) {
+
+            // create a results array with all the locations in our list that do NOT have the id of the location we want to delete
+            const results = locationData.filter((location) => {
+                return location.id !== foundLocation.id
+            })
+
+            // reassign the location array to the results array
+            locationData = results
+
+            // send a success response to the user
+            res.json ({
+                message: "success",
+                messageDetail: `${foundLocation.name} has been successfully removed from the list!`,
+                payload: locationData
+            })
+
+        // if the location we want to delete is NOT in our list
+        } else {
+
+            // send a falure response to the user
+            res.status(404).json ({
+                message: "failure",
+                payload: "Location was not found in our list, could NOT delete."
+            })
+
+        }
+
+    // send an error response with the error text
+    } catch (error) {
+
+        res.status(500).json ({
+            message: "failure",
+            payload: error.message
+        })
+        
+    }
+
+})
+
 // export router
 module.exports = router 

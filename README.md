@@ -104,7 +104,7 @@ DONE-- PUT /locations/:id
 
 --------------------------------------------------
 
-DELETE /locations/:id
+DONE-- DELETE /locations/:id
 
 - Deletes a location by ID
 
