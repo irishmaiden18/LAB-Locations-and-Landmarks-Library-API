@@ -31,7 +31,7 @@ router.get("/", (req, res) => {
         let sortBy = req.query.sortBy || "name"
         let order = req.query.order || "asc"
 
-        // account for casing of the sortBy parameters
+        // account for casing of the parameters
         sortBy = sortBy.toLowerCase()
         order = order.toLowerCase()
 
@@ -229,7 +229,7 @@ router.delete("/:id", (req, res) => {
             message: "failure",
             payload: error.message
         })
-        
+
     }
 
 })

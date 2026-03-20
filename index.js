@@ -20,11 +20,11 @@ app.use(express.json())
 
 // import router files
 const locationsRouter = require("./routes/locationsRouter")
-// const landmarksRouter = require("./routes/landmarksRouter")
+const landmarksRouter = require("./routes/landmarksRouter")
 
 // set up URL routes to connect to each router
 app.use("/api/v1/locations", locationsRouter)
-// app.use("/api/v1/landmarks", landmarksRouter)
+app.use("/api/v1/landmarks", landmarksRouter)
 
 // set up port
 const PORT = 3000

@@ -174,7 +174,7 @@ let landmarks = [
 
 ### Routes to Implement
 
-GET /landmarks
+DONE-- GET /landmarks
 
 - Returns all landmarks
 - Supports optional query parameters:
