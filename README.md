@@ -75,7 +75,7 @@ let locations = [
 
 ### Routes to Implement
 
-GET /locations
+DONE-- GET /locations
 
 - Returns all locations
 - Supports optional query parameters:
