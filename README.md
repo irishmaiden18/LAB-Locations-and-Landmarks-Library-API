@@ -94,7 +94,7 @@ DONE-- POST /locations
 
 --------------------------------------------------
 
-PUT /locations/:id
+DONE-- PUT /locations/:id
 
 - Updates a location by ID
 - Allowed fields:

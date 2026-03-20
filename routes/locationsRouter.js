@@ -44,13 +44,14 @@ router.get("/", (req, res) => {
             payload: sortedLocations
         })
 
+    // send an error response with the error text
     } catch (error) {
 
         res.status(500).json({
             message: "failure",
             payload: error.message
         })
-        
+
     }
 
 })
@@ -111,11 +112,74 @@ router.post("/", (req, res) => {
 
         }
 
+    // send an error response with the error text
     } catch (error) {
+
         res.status(500).json ({
             message: "failure",
             payload: error.message
         })
+
+    }
+
+})
+
+// handles PUT requests
+router.put("/:id", (req, res) => {
+
+    try {
+
+        // figure out whether the location user wants to update is in our list
+        const foundLocation = locationData.find((location) => {
+            return location.id === req.params.id
+        })
+
+        // if the location is in our list
+        if (foundLocation) {
+
+            // create a new object to update the location with that features the properties the user is giving (do NOT include the id as we don't want them to be allowed to update that), keep the old properties if a new one isn't given
+            const locationToUpdate = {
+                name: req.body.name || foundLocation.name,
+                country: req.body.country || foundLocation.country,
+                population: req.body.population || foundLocation.population
+            }
+
+            // create a second new object with the properties of the first object but all set to lower case. Since the properties might not be given by the user we can't lowercase it above
+            const casedLocationToUpdate = {
+                name: locationToUpdate.name.toLowerCase(),
+                country: locationToUpdate.country.toLowerCase(),
+                population: locationToUpdate.population
+            }
+
+            // update our location with the second new object we created
+            Object.assign(foundLocation, casedLocationToUpdate)
+
+            // send a success response including the updated object
+            res.json ({
+                message: "success",
+                messageDetail: `${foundLocation.name} has been successfully updated!`,
+                payload: foundLocation
+            })
+
+        // if the location is NOT in our list
+        } else {
+
+            // send a failure response
+            res.status(404).json ({
+                message: "failure",
+                payload: "Location was not found in our list, could NOT update!"
+            })
+
+        }
+
+    // send an error response with the error text
+    } catch (error) {
+
+        res.status(500).json ({
+            message: "failure",
+            payload: error.message
+        })
+
     }
 
 })
