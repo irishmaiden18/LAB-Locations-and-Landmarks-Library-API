@@ -9,7 +9,7 @@ const router = express.Router()
 const landmarks = require("../data/landmarks")
 
 // set all data to lower case to make all sorting/searching case independent
-const landmarkData = landmarks.map((landmark) => {
+let landmarkData = landmarks.map((landmark) => {
     return {
         id: landmark.id,
         name: landmark.name.toLowerCase(),
@@ -190,6 +190,57 @@ router.put("/:id", (req, res) => {
             message: "failure",
             payload: error.message
         })
+    }
+
+})
+
+// handles DELETE requests
+router.delete("/:id", (req, res) => {
+
+    try {
+
+        // figure out whether the landmark being deleted is actually in our list
+        const foundLandmark = landmarkData.find((landmark) => {
+            return landmark.id === req.params.id
+        })
+
+        // if the landmark to be deleted IS in our list
+        if (foundLandmark) {
+
+            // create a results array made up of all the landmarks that do NOT have the ID the user has provided
+            const results = landmarkData.filter((landmark) => {
+                return landmark.id !== foundLandmark.id
+            })
+
+            // reassign landmarkData to the results array
+            landmarkData = results
+
+            // send a success response that includes the new landmarkData
+            res.json ({
+                message: "success",
+                messageDetail: `The ${foundLandmark.name} had been successfully removed from the list!`,
+                payload: landmarkData
+            })
+
+        // if the landmark to be deleted is NOT in our list
+        } else {
+
+            // send a failure response to the user
+            res.status(404).json ({
+                message: "failure",
+                payload: "The landmark was NOT found in our list, CANNOT delete!"
+            })
+
+        }
+
+    // send an error response that includes the error message to the user
+    } catch (error) {
+
+        res.status(500).json ({
+            message: "failure",
+            payload: error.message
+        })
+
     }
 
 })

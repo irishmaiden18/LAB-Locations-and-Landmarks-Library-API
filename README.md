@@ -203,7 +203,7 @@ DONE-- PUT /landmarks/:id
 
 --------------------------------------------------
 
-DELETE /landmarks/:id
+DONE-- DELETE /landmarks/:id
 
 - Deletes a landmark by ID
 
@@ -211,8 +211,8 @@ DELETE /landmarks/:id
 
 ## Testing
 
-- Test all routes using Postman
-- Verify:
+- DONE-- Test all routes using Postman
+- DONE--Verify:
   - Sorting works in both directions
   - CRUD operations work for both routers
 

@@ -207,7 +207,7 @@ router.delete("/:id", (req, res) => {
             // send a success response to the user
             res.json ({
                 message: "success",
-                messageDetail: `${foundLocation.name} has been successfully removed from the list!`,
+                messageDetail: `The ${foundLocation.name} has been successfully removed from the list!`,
                 payload: locationData
             })
 
