@@ -52,3 +52,6 @@ let landmarks = [
     yearBuilt: 1920
   }
 ]
+
+// export the data so we can use it elsewhere
+module.exports = landmarks

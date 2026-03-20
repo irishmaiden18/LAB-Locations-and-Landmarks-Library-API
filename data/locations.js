@@ -34,3 +34,6 @@ let locations = [
     population: 2160000
   }
 ]
+
+// export the data so we can use it elsewhere
+module.exports = locations

@@ -1,6 +1,6 @@
 // import express & uuid
 const express = require("express")
-const uuid = require("uudi").v4
+const uuid = require("uuid").v4
 
 // set up router
 const router = express.Router()

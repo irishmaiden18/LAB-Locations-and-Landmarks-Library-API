@@ -23,8 +23,35 @@ const sort = require("../utils")
 
 // handles GET requests
 // gets a list of all locations sorted by name or population in ascending or descending order
+router.get("/", (req, res) => {
+
+    try {
+        // use query parameters to figure out how to sort
+        // if there are no parameters, sort by name in ascending order
+        let sortBy = req.query.sortBy || "name"
+        let order = req.query.order || "asc"
+
+        // account for casing of the sortBy parameters
+        sortBy = sortBy.toLowerCase()
+        order = order.toLowerCase()
+
+        // call sort function on the location data
+        const sortedLocations = sort(locationData, sortBy, order)
+
+        // send a response to the user including the sorted data
+        res.json({
+            message: "success",
+            payload: sortedLocations
+        })
+    } catch (error) {
+        res.status(500).json({
+            message: "failure",
+            payload: error.message
+        })
+    }
+})
 
 
 
 // export router
-module.export = router 
+module.exports = router 
