@@ -84,7 +84,7 @@ DONE-- GET /locations
 
 --------------------------------------------------
 
-POST /locations
+DONE-- POST /locations
 
 - Adds a new location
 - Required fields:
