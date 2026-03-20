@@ -129,7 +129,7 @@ router.put("/:id", (req, res) => {
 
     try {
 
-        // figure out whether the location user wants to update is in our list
+        // figure out whether the location the user wants to update is in our list
         const foundLocation = locationData.find((location) => {
             return location.id === req.params.id
         })
@@ -137,7 +137,7 @@ router.put("/:id", (req, res) => {
         // if the location is in our list
         if (foundLocation) {
 
-            // create a new object to update the location with that features the properties the user is giving (do NOT include the id as we don't want them to be allowed to update that), keep the old properties if a new one isn't given
+            // create a new object to update the location that features the properties the user wants to update (do NOT include the id as we don't want them to be allowed to update that), keep the old properties if a new one isn't given
             const locationToUpdate = {
                 name: req.body.name || foundLocation.name,
                 country: req.body.country || foundLocation.country,

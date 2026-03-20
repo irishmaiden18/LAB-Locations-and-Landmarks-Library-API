@@ -134,5 +134,65 @@ router.post("/", (req, res) => {
 
 })
 
+// handles PUT requests
+router.put("/:id", (req, res) => {
+
+    try {
+
+        // determine whether the landmark the user wants to update is in our list
+        const foundLandmark = landmarkData.find((landmark) => {
+            return landmark.id === req.params.id
+        })
+
+        // if the landmark is in our list
+        if (foundLandmark) {
+
+            // create a new object to update the landmark with the properties the user wants to update (NOT including the id, we don't want the user able to update the id)
+            // keep the old properties if a new one isn't given by the user
+            const landmarkToUpdate = {
+                name: req.body.name || foundLandmark.name,
+                city: req.body.city || foundLandmark.city,
+                yearBuilt: req.body.yearBuilt || foundLandmark.yearBuilt
+            }
+
+            // create a second new object with the properties of the first object but all set to lower case. We can't lowercase the first new object because properties may not exist
+            const casedLandmarkToUpdate = {
+                name: landmarkToUpdate.name.toLowerCase(),
+                city: landmarkToUpdate.city.toLowerCase(),
+                yearBuilt: landmarkToUpdate.yearBuilt
+            }
+
+            // update our landmark with the second new object we created
+            Object.assign(foundLandmark, casedLandmarkToUpdate)
+
+            // send a success response that includes the updated object
+            res.json ({
+                message: "success",
+                messageDetail: `${foundLandmark.name} successfully updated!`,
+                payload: foundLandmark
+            })
+
+        // else, if the landmark is NOT in our list
+        } else {
+
+            // send a failure response to the user
+            res.status(404).json ({
+                message: "failure",
+                payload: "The landmark you wanted to update is NOT in our list. Could NOT update!"
+            })
+
+        }
+
+    // send an error response with the error text
+    } catch (error) {
+
+        res.status(500).json ({
+            message: "failure",
+            payload: error.message
+        })
+    }
+
+})
+
 // export router
 module.exports = router

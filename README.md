@@ -193,7 +193,7 @@ DONE-- POST /landmarks
 
 --------------------------------------------------
 
-PUT /landmarks/:id
+DONE-- PUT /landmarks/:id
 
 - Updates a landmark by ID
 - Allowed fields:
