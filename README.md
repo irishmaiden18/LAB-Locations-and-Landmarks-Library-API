@@ -15,16 +15,16 @@ This assignment reinforces:
 
 ## Project Setup
 Inside a new folder:
-1. Create an index.js file
-2. Create a routes folder
-3. Inside routes, create:
+1. DONE-- Create an index.js file
+2. DONE-- Create a routes folder
+3. DONE-- Inside routes, create:
    - locationsRouter.js
    - landmarksRouter.js
-4. Initialize the Node project:
+4. DONE-- Initialize the Node project:
 
 `npm init -y`
 
-5. Install dependencies:
+5. DONE-- Install dependencies:
 
 `npm install express morgan uuid lodash`
 
@@ -34,7 +34,7 @@ Inside a new folder:
 
 ### Data Model
 
-Utilize this array of locations:
+DONE-- Utilize this array of locations:
 
 ```
 let locations = [
@@ -114,7 +114,7 @@ DELETE /locations/:id
 
 ### Data Model
 
-Create an array of landmarks using uuid() for unique IDs.
+DONE-- Create an array of landmarks using uuid() for unique IDs.
 
 Example:
 ```
